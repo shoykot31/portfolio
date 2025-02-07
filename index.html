@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shoykot Mahmud | Portfolio</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #000;
+            color: #fff;
+            margin: 0;
+            padding: 0;
+            text-align: center;
+        }
+        header {
+            background-color: #111;
+            padding: 15px 0;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+        }
+        nav ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+        nav ul li {
+            display: inline;
+            margin: 0 15px;
+        }
+        nav ul li a {
+            color: #fff;
+            text-decoration: none;
+            font-weight: bold;
+            transition: 0.3s;
+        }
+        nav ul li a:hover {
+            color: #aaa;
+        }
+        #home {
+            position: relative;
+            background: url('myphoto.png') no-repeat center center/cover;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+        #home::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.6); /* Dim effect */
+        }
+        #home h1, #home p, #home .btn {
+            position: relative;
+            z-index: 1;
+        }
+        .btn {
+            background-color: #fff;
+            color: #000;
+            padding: 12px 25px;
+            text-decoration: none;
+            display: inline-block;
+            margin-top: 15px;
+            border-radius: 5px;
+            transition: 0.3s;
+        }
+        .btn:hover {
+            background-color: #aaa;
+            color: #000;
+        }
+        .project-grid {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+        .project-item {
+            background-color: #222;
+            padding: 20px;
+            border-radius: 10px;
+            width: 300px;
+            transition: 0.3s;
+        }
+        .project-item:hover {
+            transform: scale(1.05);
+            background-color: #333;
+        }
+        form input, form textarea, form button {
+            width: 80%;
+            padding: 12px;
+            margin: 10px 0;
+            border: none;
+            border-radius: 5px;
+        }
+        form input, form textarea {
+            background-color: #333;
+            color: #fff;
+        }
+        form button {
+            background-color: #fff;
+            color: #000;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+        form button:hover {
+            background-color: #aaa;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav>
+            <ul>
+                <li><a href="#home">Home</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#projects">Projects</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+    
+    <section id="home">
+        <h1>Welcome to My Portfolio</h1>
+        <p>Programmer, Tech enthusiast</p>
+        <a href="#projects" class="btn">View Projects</a>
+    </section>
+    
+    <section id="about">
+        <h2>About Me</h2>
+        <p>I am Shoykot Mahmud, a passionate programmer and tech enthusiast. My expertise includes Python, C, C++, Cybersecurity, and AI.</p>
+    </section>
+    
+    <section id="projects">
+        <h2>Projects</h2>
+        <div class="project-grid">
+            <div class="project-item">
+                <h3>Face Detection</h3>
+                <p>A Python project which can detect faces and identify names if available in the database.</p>
+            </div>
+            <div class="project-item">
+                <h3>Calculator</h3>
+                <p>A multifunctional calculator built with Python.</p>
+            </div>
+            <div class="project-item">
+                <h3>Library Management</h3>
+                <p>A library management system developed using C and Python.</p>
+            </div>
+        </div>
+    </section>
+    
+    <section id="contact">
+        <h2>Contact</h2>
+        <p>Email: <a href="mailto:shoykot13@proton.me">shoykot13@proton.me</a></p>
+        <form>
+            <input type="text" placeholder="Your Name" required>
+            <input type="email" placeholder="Your Email" required>
+            <textarea placeholder="Your Message" required></textarea>
+            <button type="submit">Send</button>
+        </form>
+    </section>
+</body>
+</html>
