@@ -1,170 +1,283 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Shoykot Mahmud | Portfolio</title>
-    <link rel="stylesheet" href="styles.css">
-    <style>
-        body {
-            font-family: 'Arial', sans-serif;
-            background-color: #000;
-            color: #fff;
-            margin: 0;
-            padding: 0;
-            text-align: center;
-        }
-        header {
-            background-color: #111;
-            padding: 15px 0;
-            position: fixed;
-            width: 100%;
-            top: 0;
-            z-index: 1000;
-        }
-        nav ul {
-            list-style: none;
-            padding: 0;
-            margin: 0;
-        }
-        nav ul li {
-            display: inline;
-            margin: 0 15px;
-        }
-        nav ul li a {
-            color: #fff;
-            text-decoration: none;
-            font-weight: bold;
-            transition: 0.3s;
-        }
-        nav ul li a:hover {
-            color: #aaa;
-        }
-        #home {
-            position: relative;
-            background: url('myphoto.png') no-repeat center center/cover;
-            height: 100vh;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-        }
-        #home::before {
-            content: "";
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0, 0, 0, 0.6); /* Dim effect */
-        }
-        #home h1, #home p, #home .btn {
-            position: relative;
-            z-index: 1;
-        }
-        .btn {
-            background-color: #fff;
-            color: #000;
-            padding: 12px 25px;
-            text-decoration: none;
-            display: inline-block;
-            margin-top: 15px;
-            border-radius: 5px;
-            transition: 0.3s;
-        }
-        .btn:hover {
-            background-color: #aaa;
-            color: #000;
-        }
-        .project-grid {
-            display: flex;
-            justify-content: center;
-            gap: 20px;
-            flex-wrap: wrap;
-        }
-        .project-item {
-            background-color: #222;
-            padding: 20px;
-            border-radius: 10px;
-            width: 300px;
-            transition: 0.3s;
-        }
-        .project-item:hover {
-            transform: scale(1.05);
-            background-color: #333;
-        }
-        form input, form textarea, form button {
-            width: 80%;
-            padding: 12px;
-            margin: 10px 0;
-            border: none;
-            border-radius: 5px;
-        }
-        form input, form textarea {
-            background-color: #333;
-            color: #fff;
-        }
-        form button {
-            background-color: #fff;
-            color: #000;
-            cursor: pointer;
-            transition: 0.3s;
-        }
-        form button:hover {
-            background-color: #aaa;
-        }
-    </style>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Shoykot Mahmud — Portfolio</title>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@400;700&family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
+  <style>
+    /* ---------- THEME / RESET ---------- */
+    :root{
+      --bg:#0b0f12;
+      --panel:#0f1113;
+      --muted:#9aa4a6;
+      --accent:#c0392b; /* blood red */
+      --neon:#8b5cf6; /* purple-ish */
+      --glass: rgba(255,255,255,0.03);
+      --glass-2: rgba(255,255,255,0.02);
+      --card-shadow: 0 8px 30px rgba(0,0,0,0.7);
+      color-scheme: dark;
+      font-synthesis: none;
+    }
+    *{box-sizing:border-box}
+    html,body{height:100%;margin:0;background:linear-gradient(180deg,#050607 0%, #0b0f12 100%);font-family:Inter, system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial}
+    a{color:inherit;text-decoration:none}
+
+    /* ---------- HERO ---------- */
+    .hero{
+      position:relative;
+      min-height:70vh;
+      display:flex;align-items:center;justify-content:center;
+      overflow:hidden;
+    }
+    /* background photo: replace photo.jpg in same folder */
+    .hero::before{
+      content:'';position:absolute;inset:0;z-index:0;background:url('photo.jpg') center/cover no-repeat fixed;filter:grayscale(10%) contrast(85%) brightness(40%);
+      transform-origin:center;transition:transform 0.9s cubic-bezier(.2,.9,.3,1);
+    }
+    .hero:hover::before{transform:scale(1.03) rotate(-0.2deg)}
+
+    .hero-overlay{position:relative;z-index:2;display:flex;gap:2rem;align-items:center;padding:6rem 2rem;width:100%;max-width:1200px}
+    .intro{max-width:720px}
+    h1{font-size:clamp(28px,6vw,56px);margin:0;color:#fff;letter-spacing:-0.02em}
+    .name-accent{display:inline-block;margin-right:0.6rem;color:var(--neon);font-weight:800}
+    .tagline{color:var(--muted);margin-top:8px;font-weight:600}
+
+    /* dracula blood accent (SVG mask) */
+    .blood{position:absolute;right:6%;top:6%;width:180px;height:180px;mix-blend-mode:screen;opacity:0.9;z-index:3}
+
+    /* small card */
+    .glass-card{background:linear-gradient(180deg, rgba(255,255,255,0.03), rgba(255,255,255,0.02));border:1px solid rgba(255,255,255,0.04);backdrop-filter: blur(6px);padding:18px;border-radius:14px;color:var(--muted);box-shadow:var(--card-shadow)}
+
+    .meta{display:flex;gap:14px;align-items:center;margin-top:18px}
+    .meta b{color:#fff}
+
+    /* typing effect */
+    .type{display:inline-block;color:var(--accent);font-family:Roboto Mono, monospace}
+
+    /* ---------- NAV ---------- */
+    nav{position:fixed;left:0;right:0;top:12px;display:flex;justify-content:center;z-index:60}
+    .nav-inner{width:100%;max-width:1200px;padding:6px 16px;display:flex;justify-content:flex-end;gap:12px}
+    .social-btn{background:var(--glass);padding:8px 12px;border-radius:10px;border:1px solid rgba(255,255,255,0.03);color:var(--muted);font-weight:600;display:inline-flex;gap:8px;align-items:center}
+    .social-btn:hover{transform:translateY(-3px)}
+
+    /* ---------- MAIN ---------- */
+    main{max-width:1200px;margin:2rem auto;padding:2rem}
+    .section{margin-bottom:3.5rem}
+    .section h2{color:#fff;margin:0 0 12px 0;font-size:20px}
+    .skills{display:flex;flex-wrap:wrap;gap:8px}
+    .skill{background:linear-gradient(90deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));padding:8px 12px;border-radius:10px;border:1px solid rgba(255,255,255,0.03);font-weight:600}
+
+    /* projects */
+    .projects{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:18px}
+    .proj{padding:18px;border-radius:12px;background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));border:1px solid rgba(255,255,255,0.03);box-shadow:var(--card-shadow);position:relative;overflow:hidden}
+    .proj h3{margin:0 0 6px 0;color:#fff}
+    .proj p{margin:0;color:var(--muted);font-size:14px}
+    .proj .cta{margin-top:12px;display:inline-flex;gap:8px}
+    .btn{background:transparent;border:1px solid rgba(255,255,255,0.06);padding:8px 12px;border-radius:8px;color:var(--muted);font-weight:700}
+    .proj:hover{transform:translateY(-6px);transition:transform .35s cubic-bezier(.2,.9,.3,1)}
+
+    /* resume button */
+    .resume-btn{display:inline-flex;align-items:center;gap:10px;padding:12px 16px;border-radius:12px;background:linear-gradient(90deg,var(--accent), #8b1f1b);color:white;font-weight:800;border:none;cursor:pointer}
+
+    /* contact */
+    .contacts{display:flex;gap:12px;align-items:center}
+    .icon{width:38px;height:38px;border-radius:8px;background:var(--glass);display:inline-grid;place-items:center;border:1px solid rgba(255,255,255,0.03)}
+
+    /* footer */
+    footer{padding:2rem 1rem;text-align:center;color:var(--muted)}
+
+    /* animations */
+    @keyframes blink{0%,100%{opacity:1}50%{opacity:0.15}}
+    .cursor{width:8px;height:20px;background:var(--accent);display:inline-block;margin-left:6px;animation:blink 1s infinite}
+
+    /* scroll reveal */
+    .reveal{opacity:0;transform:translateY(10px);transition:opacity .7s ease, transform .7s ease}
+    .reveal.visible{opacity:1;transform:translateY(0)}
+
+    /* responsive */
+    @media(max-width:720px){.hero-overlay{flex-direction:column;align-items:flex-start;padding:4rem 1.2rem}.blood{display:none}.nav-inner{justify-content:center}}
+
+    /* little horror: subtle dripping animation */
+    .drip{position:absolute;left:6%;bottom:-40px;width:6px;height:70px;background:linear-gradient(180deg,var(--accent),#6d0f0f);border-radius:6px;box-shadow:0 6px 20px rgba(192,37,37,0.2);opacity:0.9;animation:drip 2.4s infinite ease-in}
+    @keyframes drip{0%{transform:translateY(-10px);opacity:0}20%{opacity:0.9;transform:translateY(0)}100%{transform:translateY(30px);opacity:0}}
+
+  </style>
 </head>
 <body>
-    <header>
-        <nav>
-            <ul>
-                <li><a href="#home">Home</a></li>
-                <li><a href="#about">About</a></li>
-                <li><a href="#projects">Projects</a></li>
-                <li><a href="#contact">Contact</a></li>
-            </ul>
-        </nav>
-    </header>
-    
-    <section id="home">
-        <h1>Welcome to My Portfolio</h1>
-        <p>Programmer, Tech enthusiast</p>
-        <a href="#projects" class="btn">View Projects</a>
-    </section>
-    
-    <section id="about">
-        <h2>About Me</h2>
-        <p>I am Shoykot Mahmud, a passionate programmer and tech enthusiast. My expertise includes Python, C, C++, Cybersecurity, and AI.</p>
-    </section>
-    
-    <section id="projects">
-        <h2>Projects</h2>
-        <div class="project-grid">
-            <div class="project-item">
-                <h3>Face Detection</h3>
-                <p>A Python project which can detect faces and identify names if available in the database.</p>
+  <!--
+    📌 How to use:
+      - Put your hero image file named `photo.jpg` in the same folder as this HTML.
+      - Put your resume as `resume.pdf` in the same folder (or change the link in the resume button).
+      - Edit project titles/descriptions in the Projects section.
+  -->
+
+  <nav>
+    <div class="nav-inner">
+      <a class="social-btn" href="https://github.com/your-github" target="_blank" rel="noopener noreferrer">GitHub</a>
+      <a class="social-btn" href="https://facebook.com/your-profile" target="_blank" rel="noopener noreferrer">Facebook</a>
+      <a class="social-btn" href="https://linkedin.com/in/your-profile" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+    </div>
+  </nav>
+
+  <header class="hero">
+    <svg class="blood" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+      <!-- stylized blood splash, dracula vibe -->
+      <g fill="none" stroke="none">
+        <path d="M20 90c10-30 60-60 100-30 40 30 60 90 10 110-50 20-110-20-120-80z" fill="var(--accent)" opacity="0.14"/>
+        <circle cx="40" cy="35" r="6" fill="var(--accent)" opacity="0.8"/>
+        <circle cx="80" cy="18" r="4" fill="var(--accent)" opacity="0.9"/>
+        <ellipse cx="150" cy="70" rx="8" ry="16" fill="#6d0f0f" opacity="0.7"/>
+      </g>
+    </svg>
+
+    <div class="hero-overlay">
+      <div class="intro">
+        <h1><span class="name-accent">Shoykot Mahmud</span></h1>
+        <div class="tagline">Competitive programmer | AI Enthusiast | Gamer — Founder @ Nebula Neural</div>
+
+        <div style="margin-top:20px;display:flex;gap:12px;align-items:center;flex-wrap:wrap">
+          <div class="glass-card">
+            <div style="font-weight:800;color:#fff;font-size:13px">About</div>
+            <div style="margin-top:8px;color:var(--muted);font-size:14px">I build intelligent systems, crush algorithmic puzzles, and design resilient, secure software. I lead Nebula Neural where we push ML & robotics into new frontiers.</div>
+            <div class="meta">
+              <div style="font-size:13px;color:var(--muted)"><b>Location</b> Dhaka, Bangladesh</div>
+              <div style="font-size:13px;color:var(--muted)"><b>Role</b> AI/ML Developer, Offensive Cyber</div>
             </div>
-            <div class="project-item">
-                <h3>Calculator</h3>
-                <p>A multifunctional calculator built with Python.</p>
-            </div>
-            <div class="project-item">
-                <h3>Library Management</h3>
-                <p>A library management system developed using C and Python.</p>
-            </div>
+          </div>
+
+          <button class="resume-btn" onclick="open('resume.pdf','_blank')">Download Resume</button>
         </div>
+
+        <div style="margin-top:18px">
+          <span style="color:var(--muted);font-weight:700">I am: </span>
+          <span class="type" id="type"></span><span class="cursor" aria-hidden></span>
+        </div>
+
+      </div>
+
+      <div style="margin-left:auto;text-align:right;min-width:220px">
+        <div class="glass-card reveal" style="width:100%">
+          <div style="font-weight:800;color:#fff">Skills</div>
+          <div style="margin-top:10px" class="skills">
+            <div class="skill">Python</div>
+            <div class="skill">C / C++</div>
+            <div class="skill">R</div>
+            <div class="skill">Bash</div>
+            <div class="skill">AI / ML</div>
+            <div class="skill">Cybersecurity</div>
+          </div>
+
+          <div style="margin-top:12px;display:flex;gap:8px;justify-content:flex-end">
+            <a class="social-btn" href="mailto:youremail@example.com">Email</a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="drip" style="--i:1"></div>
+  </header>
+
+  <main>
+    <section class="section reveal" id="projects">
+      <h2>Selected Projects</h2>
+      <div class="projects">
+        <!-- 3 sample projects to be edited later -->
+        <article class="proj">
+          <h3>Project Alpha — Autonomous Exploit Research</h3>
+          <p>A research pipeline that automates vulnerability discovery and responsible disclosure workflows. Built with Python, custom fuzzers, and RL-guided triage.</p>
+          <div class="cta">
+            <button class="btn">Details</button>
+            <button class="btn">Source</button>
+          </div>
+        </article>
+
+        <article class="proj">
+          <h3>NeuralNet Studio — Model Playground</h3>
+          <p>Interactive web environment for training, visualizing, and deploying small-to-medium neural nets. Real-time charts and experiment versioning.</p>
+          <div class="cta">
+            <button class="btn">Demo</button>
+            <button class="btn">Code</button>
+          </div>
+        </article>
+
+        <article class="proj">
+          <h3>SentinelOS — Lightweight IDS</h3>
+          <p>Edge-friendly intrusion detection system with behavioral heuristics and anomaly scoring. Designed for low-latency environments.</p>
+          <div class="cta">
+            <button class="btn">Whitepaper</button>
+            <button class="btn">Repo</button>
+          </div>
+        </article>
+      </div>
     </section>
-    
-    <section id="contact">
-        <h2>Contact</h2>
-        <p>Email: <a href="mailto:shoykot13@proton.me">shoykot13@proton.me</a></p>
-        <form>
-            <input type="text" placeholder="Your Name" required>
-            <input type="email" placeholder="Your Email" required>
-            <textarea placeholder="Your Message" required></textarea>
-            <button type="submit">Send</button>
-        </form>
+
+    <section class="section reveal" id="about">
+      <h2>About Me</h2>
+      <p style="color:var(--muted);max-width:880px;line-height:1.6">I focus on building scalable ML systems, solving algorithmic problems, and designing secure platforms. I thrive on puzzles — from competitive programming contests to complex ML research. Outside code, I game, read classic horror, and tinker with robotics experiments.</p>
     </section>
+
+    <section class="section reveal" id="skills">
+      <h2>Technical Skills</h2>
+      <div class="skills">
+        <div class="skill">Algorithms & Data Structures</div>
+        <div class="skill">Deep Learning (PyTorch)</div>
+        <div class="skill">Model Deployment</div>
+        <div class="skill">Reverse Engineering</div>
+        <div class="skill">System & Network Security</div>
+      </div>
+    </section>
+
+    <section class="section reveal" id="contact">
+      <h2>Contact</h2>
+      <div class="contacts" style="margin-top:12px">
+        <a class="icon" href="https://github.com/your-github" target="_blank">GH</a>
+        <a class="icon" href="https://facebook.com/your-profile" target="_blank">FB</a>
+        <a class="icon" href="https://linkedin.com/in/your-profile" target="_blank">in</a>
+        <a class="icon" href="mailto:youremail@example.com">@</a>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    © <span id="year"></span> Shoykot Mahmud — Built with ⚡ Draculyne vibes.
+  </footer>
+
+  <script>
+    // small helpers: typing effect
+    const words = ['Competitive Programmer','AI Enthusiast','Founder @ Nebula Neural','Offensive Cyber Student','Gamer'];
+    let i=0, j=0, isDeleting=false, typeEl=document.getElementById('type');
+    function type(){
+      const current = words[i];
+      if(!isDeleting){
+        typeEl.textContent = current.slice(0, ++j);
+        if(j===current.length){isDeleting=true;setTimeout(type,900);return}
+      } else {
+        typeEl.textContent = current.slice(0, --j);
+        if(j===0){isDeleting=false;i=(i+1)%words.length}
+      }
+      setTimeout(type, isDeleting?40:70 + Math.random()*80);
+    }
+    type();
+
+    // set year
+    document.getElementById('year').textContent = new Date().getFullYear();
+
+    // scroll reveal
+    const obs = new IntersectionObserver((entries)=>{
+      entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('visible');obs.unobserve(e.target)}});
+    },{threshold:0.12});
+    document.querySelectorAll('.reveal').forEach(el=>obs.observe(el));
+
+    // small parallax on mouse move
+    document.querySelector('.hero').addEventListener('mousemove',e=>{
+      const el = document.querySelector('.hero::before');
+      const x = (window.innerWidth/2 - e.clientX)/120;
+      const y = (window.innerHeight/2 - e.clientY)/120;
+      document.querySelector('.hero').style.setProperty('--mx', x+'px');
+    });
+
+    // prevent bots from spammy forms (no form included per preferences)
+  </script>
 </body>
 </html>
