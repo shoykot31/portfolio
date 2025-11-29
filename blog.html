@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Ritual Chamber | Forbidden Blog</title>
+  <link rel="stylesheet" href="css/style.css" />
+  <style>* { cursor: url('assets/cursor.cur'), auto !important; }</style>
+</head>
+<body class="blog-page">
+
+  <div id="gate">
+    <div class="gate-inner">
+      <h1>THE RITUAL CHAMBER</h1>
+      <p>Only the worthy may enter.</p>
+      <input type="password" id="pass" placeholder="Speak the ancient word..." />
+      <button onclick="enter()">ENTER</button>
+      <p id="denied" style="color:#f00; display:none; margin-top:1rem;">ACCESS DENIED. YOUR SOUL IS WEAK.</p>
+    </div>
+  </div>
+
+  <div id="chamber" style="display:none; padding:4rem; text-align:center;">
+    <h1 class="blood-title">FORBIDDEN WRITINGS</h1>
+    <p>My thoughts on AI, Linux sorcery, neural networks, and the coming technological singularity.</p>
+    <p>Blog coming soon... or perhaps never. The void decides.</p>
+    <br><br>
+    <a href="index.html" class="occult-btn">← Return to the Mortal Realm</a>
+  </div>
+
+  <script>
+    function enter() {
+      if (document.getElementById('pass').value === 'password') {
+        document.getElementById('gate').style.display = 'none';
+        document.getElementById('chamber').style.display = 'block';
+      } else {
+        document.getElementById('denied').style.display = 'block';
+        document.body.style.animation = 'shake 0.6s';
+        new Audio('https://files.catbox.moe/8f6g2p.mp3').play();
+      }
+    }
+    document.getElementById('pass').addEventListener('keypress', e => e.key === 'Enter' && enter());
+  </script>
+</body>
+</html>
