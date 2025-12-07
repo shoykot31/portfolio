@@ -1,4 +1,7 @@
 document.addEventListener('DOMContentLoaded', () => {
+  // ------------------------------
+  // PROJECT CARD GENERATOR
+  // ------------------------------
   const projects = [
     {t:"Minimal Linux-Based OS Build",d:"Designed and assembled a lightweight custom OS environment using Linux tools and shell scripting."},
     {t:"Custom Web Browser Prototype",d:"Developed a simple browser using JavaScript, HTML, and Python-based backend logic."},
@@ -21,16 +24,35 @@ document.addEventListener('DOMContentLoaded', () => {
     container.appendChild(card);
   });
 
-  window.closeModal = () => document.getElementById('blood-modal').style.display = 'none';
+  // ------------------------------
+  // MODAL CLOSE FUNCTION
+  // ------------------------------
+  window.closeModal = () =>
+    document.getElementById('blood-modal').style.display = 'none';
 
-  // Ouija spirit moves when typing
+  // ------------------------------
+  // OUIJA PLANCHETTE MOVEMENT
+  // ------------------------------
   document.addEventListener('keydown', () => {
     const p = document.querySelector('.planchette');
     const x = Math.random() * 80 + 10;
     const y = Math.random() * 80 + 10;
     p.style.left = x + '%';
     p.style.top = y + '%';
-    p.style.transform = 'rotate(' + Math.random()*360 + 'deg) scale(1.5)';
+    p.style.transform = 'rotate(' + Math.random() * 360 + 'deg) scale(1.5)';
     setTimeout(() => p.style.transform = 'rotate(0deg) scale(1)', 400);
   });
+
+  // ------------------------------
+  // AUDIO UNLOCK FIX
+  // ------------------------------
+  const chantAudio = document.getElementById('chant');
+
+  document.addEventListener('click', () => {
+    if (chantAudio) {
+      chantAudio.muted = false;
+      chantAudio.volume = 0.15;
+      chantAudio.play().catch(err => console.log("Autoplay blocked:", err));
+    }
+  }, { once: true });
 });
