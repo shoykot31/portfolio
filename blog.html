@@ -18,7 +18,9 @@
       <p id="denied" style="color:#f00; display:none; margin-top:1rem;">ACCESS DENIED. YOUR SOUL IS WEAK.</p>
     </div>
   </div>
-
+   <audio id="chant" autoplay loop muted playsinline>
+      <source src="assets/music.mp3" type="audio/mpeg">
+   </audio>
   <div id="chamber" style="display:none; padding:4rem; text-align:center;">
     <h1 class="blood-title">FORBIDDEN WRITINGS</h1>
     <p>My thoughts on AI, Linux sorcery, neural networks, and the coming technological singularity.</p>
@@ -40,5 +42,17 @@
     }
     document.getElementById('pass').addEventListener('keypress', e => e.key === 'Enter' && enter());
   </script>
+  <script>
+  // Unlock autoplay audio after first user interaction
+  document.addEventListener('click', () => {
+    const chantAudio = document.getElementById('chant');
+    if (chantAudio) {
+      chantAudio.muted = false;
+      chantAudio.volume = 0.15;
+      chantAudio.play().catch(err => console.log("Autoplay blocked:", err));
+    }
+  }, { once: true });
+</script>
+
 </body>
 </html>
